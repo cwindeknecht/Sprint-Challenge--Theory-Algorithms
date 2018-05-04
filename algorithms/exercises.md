@@ -1,6 +1,6 @@
 ## Exercise 1
 
-This should be fun since I haven't taken any math past algebra, and that was at least 10 years ago...
+This should be fun since I haven't taken any math passed algebra, and that was at least 10 years ago...
 
 Sub-Exercise | Answer
 ---: | :---: 
