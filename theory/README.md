@@ -62,10 +62,21 @@ both `antelope` and `antelopes`.)
   for commands to change its behavior. For example:
 
       ESC[12;45f
+      
+1. /\e\[12;45f/g
+2. /\e\[(\d+);(\d+)f/g
+3. /\e\[(\d+);(\d+)./g  // not sure if f is only option here
 
   moves the cursor to line 12, column 45.
 
       ESC[1m
+
+1. /\e\[1m/g
+1. /\e\[1./g    // Suppose this might not be best because a number would qualify
+1. /\e\[1\w/g   // This may be preferable, though 'm' may be only option
+3. /\e\[1[a-z]/g
+2. /\e\[\dm/g   // Only needs 1, I suppose the last two are unnecessary
+3. /\e\[\d./g
 
   changes the font to bold.
 
@@ -73,6 +84,8 @@ both `antelope` and `antelopes`.)
     cursor position should accept any digits for the row and column. The
     bold sequence need only accept `1` (and is a trivial regex). (ESC is
     a single character which can be represented with `\e` in the regex.)
+
+1. For Both -- /\e\[\d[\d,\w](;\d+\w)*/g
 
   * Draw a state machine diagram for a VT-100 that can consume regular
     character sequences as well as the two above ESC sequences.
